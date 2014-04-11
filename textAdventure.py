@@ -1,3 +1,24 @@
+#
+# This is a simple program that is the beginnings of a text adventure
+# game in the style of the old Infocom games.
+#
+# This version only has enough code to allow you to move from 'room'
+# to 'room' using simple one-letter commands for directions.  Hopefully
+# my scheme for storing the 'exits' from a room is flexible enough
+# to allow directions other than n, s, e, and w, but that's all that
+# I used in this demonstration.
+#
+# The data for each room is stored in several lists.  There is one list
+# called "titles" that just has the names of all the rooms.  One is called
+# "descriptions" that has the text descriptions of all the rooms.  The
+# last list is called "exits" and it is a list of dictionaries.  Each
+# dictionary is a list of possible exits from a room, and which room they
+# go to.  This allows you to have different number of exits for each room,
+# and also to have multiple ways of getting to the same exit.  For example,
+# you could have "n", "north", or "door" all go to the same exit.
+#
+# I hope you like it!
+#
 titles = ['DRAWBRIDGE','ROAD','CAVE','WATERFALL','FOREST','CLEARING',
 	 'POOL','CABIN IN THE WOODS','CLIFF']
 exits = [{'s' : 3, 'e' : 1},
@@ -23,8 +44,8 @@ descriptions = ['You stand at the edge of a moat in front of a drawbridge '
                 'The river that feeds the falls flows from the north.',
                 'You are standing in the middle of a forest. '
                 'You hear rushing water to the west. '
-                'To the south, you think you might see some smoke through '
-                'the trees.',
+                'To the south, you think you might see some smoke rising '
+                'through the trees.',
                 'You are standing in a clearing in the middle of the woods. '
                 'There is a large oak tree near the center of the clearing.',
                 'You are standing at the edge of a pool at the foot '
