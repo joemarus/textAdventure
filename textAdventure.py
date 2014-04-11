@@ -10,11 +10,11 @@ exits = [{'s' : 3, 'e' : 1},
          {'n' : 4, 'e' : 8, 'w' : 6},
          {'n' : 5, 'w' : 7}]
 descriptions = ['You stand at the edge of a moat in front of a drawbridge '
-                'in a wall that surrounds a castle to the east. '
+                'in a wall that surrounds a castle to the west. '
                 'The drawbridge is currently raised.',
                 'You find yourself at the edge of a dusty road that runs '
                 'east and west. To the south is a forest.',
-                'The east-west road ends abruptly at a cave at the foot '
+                'An east-west road ends abruptly at a cave at the foot '
                 'of a large mountain to the east.  To the south, a forest '
                 'comes up to the foot of the mountain.  A sign in the cave '
                 'entrance says: UNDER CONSTRUCTION.',
@@ -40,25 +40,33 @@ descriptions = ['You stand at the edge of a moat in front of a drawbridge '
                 
 direction = ''
 currentRoom = 4
+quitProgram = False
 while True:
     # Show the room's title and decription
     print(" ")
     print(titles[currentRoom])
     print(descriptions[currentRoom])
-    direction = input("--\nEnter a direction ('q' to quit): ")
 
-    # First check for commands
-    if (direction == 'q'):
+    while True:
+        direction = raw_input("--\nEnter a direction ('q' to quit): ")
+        # First check for commands
+        if (direction == 'q'):
+            quitProgram = True
+            break
+
+        # Then see if we have a valid direction 
+        elif (direction not in exits[currentRoom]):
+            print("You cannot go in that direction.")
+
+        else:
+            break
+
+    if quitProgram:
         break
-
-    # Then loop until we get a valid direction 
-    while (direction not in exits[currentRoom]):
-        print("You cannot go in that direction.")
-        direction = input("Enter a direction ('q' to quit): ")
-
+    
     # Move to the new room
     currentRoom=exits[currentRoom][direction]
 
 print("Goodbye!")
-input("press Enter to close")
+raw_input("press Enter to close")
 
